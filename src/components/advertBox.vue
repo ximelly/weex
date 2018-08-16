@@ -1,8 +1,8 @@
 <template>
   <div>
     <slider class="slider" auto-play="true" interval="2000">
-      <div class="frame" v-for="item in bannerList">
-        <image class="image" resize="cover" :src="item"></image>
+      <div class="frame" v-for="item in bannerList" :key="item.advId">
+        <image class="image" resize="cover" :src="item.imgUrl"></image>
       </div>
       <indicator class="indicator"></indicator>
     </slider>
@@ -10,22 +10,36 @@
 </template>
 
 <script>
+  var stream = weex.requireModule('stream');
   module.exports = {
     data: function () {
-        const bannerHead="http://img2.mama100.com/adBigPic/201808/2c91808264ef01c0016";
-        const bannerList = [];
-        const bannerLast= ['4ff069e170065','522d1082e00ac','50cfc475e006c','5315dd85a00b6','531629a4600b8','5316101ca00b7','51d58975200a7'];
-        for (let i = 0; i < bannerLast.length; i++) {
-          bannerList.push(bannerHead+bannerLast[i]+'.jpg');
-        }
       return {
-        bannerList:bannerList
-      };
+        bannerList:[]
+      }
+    },
+    created: function() {
+      let _this=this;
+      let postBody='{"accessToken":"","devid":"80A2C2DB9A4A0ACDF0F62ED0E858D1F5","fromBiz":"MAMA_MOB","fromSystem":"HH_MALL","os":"iPhone OS","seqNo":"982D01FAD448AB167E89AAEBF01B01FD153438760727105032848027161557","ver":"84"}';
+      stream.fetch({
+        method: 'POST',
+        url: "https://m.mama100.com/o2o-web/home/getAdvert",
+        body: postBody,
+        type:'json',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+      }, function(ret) {
+        if(!ret.ok){
+          _this.bannerList =  [];
+        }else{
+          _this.bannerList = ret.data.data.advertImageBeans;
+        }
+      });
     }
   };
 </script>
 
-<style>
+<style scoped>
   .slider,.frame{
     width: 750px;
     height: 450px;
