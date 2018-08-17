@@ -21,14 +21,14 @@
 		height:160px;
 		margin-top:20px;
 	}
-    .imageIcon {
-    	flex:1;
-		justify-content: center;
-    	align-items:center;
-    }
-    .image{width:90px;height:90px}
-    .textOut{margin-top:20px;}
-    .text{font-size:26px;}
+  .imageIcon {
+  	flex:1;
+	  justify-content: center;
+  	align-items:center;
+  }
+  .image{width:90px;height:90px}
+  .textOut{margin-top:20px;}
+  .text{font-size:26px;}
 </style>
 
 <script>
