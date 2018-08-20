@@ -2,12 +2,12 @@
 	<div class="questionList">
     <div><text class="modelTitle">妈妈们在讨论什么</text></div>
     <div v-for="item in questionList" :key="item.quesId">
-      <text class="questionTitle" lines="1">{{item.title}}</text>
+      <text class="questionTitle">{{item.title}}</text>
       <text class="questionContent">{{item.content}}</text>
     </div>
 	</div>
 </template>
-<style>
+<style scoped>
   .questionList{
     padding:0 30px;
   }
