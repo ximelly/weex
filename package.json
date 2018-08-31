@@ -32,6 +32,7 @@
   "dependencies": {
     "phantom-limb": "0.0.1",
     "vue": "^2.5.11",
+    "weex-ui": "^0.6.5",
     "weex-vue-render": "^1.0.17"
   },
   "devDependencies": {
