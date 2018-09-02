@@ -256,10 +256,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 775BEEA81C1E8ECC008D1629 /* Build configuration list for PBXNativeTarget "WeexDemo" */;
 			buildPhases = (
+				E817BC71B779E5EBEEC9E743 /* [CP] Check Pods Manifest.lock */,
 				0A2546EC1E00EDC5008B7C9F /* Bundle deploy server */,
 				775BEE771C1E8ECC008D1629 /* Sources */,
 				775BEE781C1E8ECC008D1629 /* Frameworks */,
 				775BEE791C1E8ECC008D1629 /* Resources */,
+				4B396B2744A2B44CFAE2F19B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -297,7 +299,6 @@
 				84361D3C1CA10F8E00F43825 /* Frameworks */,
 				84361D431CA10F8E00F43825 /* Resources */,
 				567369891CE436EB000A646C /* ShellScript */,
-				93B40B6146CF9798322AE2D0 /* [CP] Embed Pods Frameworks */,
 				62254A043B5C03D898ED0475 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -320,7 +321,8 @@
 				TargetAttributes = {
 					775BEE7A1C1E8ECC008D1629 = {
 						CreatedOnToolsVersion = 7.1.1;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = 75535G3SGF;
+						ProvisioningStyle = Automatic;
 					};
 					775BEE931C1E8ECC008D1629 = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -397,6 +399,26 @@
 			shellPath = /bin/sh;
 			shellScript = "case \"$CONFIGURATION\" in\n  Debug)\n  # Speed up build times by skipping the creation of the offline package for debug\n  # builds on the simulator since the packager is supposed to be running anyways.\n    if [[ \"$PLATFORM_NAME\" == *simulator ]]; then\n      echo \"Skipping bundling for Simulator platform\"\n      exit 0;\n    fi\n\n    DEV=true\n    ;;\n  \"\")\n    echo \"$0 must be invoked by Xcode\"\n    exit 1\n    ;;\n  *)\n    DEV=false\n    ;;\nesac\n\nset -x\nDEST=$CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\n\nif [[ \"$CONFIGURATION\" = \"Debug\" && ! \"$PLATFORM_NAME\" == *simulator ]];\nthen\n  PLISTBUDDY='/usr/libexec/PlistBuddy'\n  PLIST=$TARGET_BUILD_DIR/$INFOPLIST_PATH\n  IP=$(ipconfig getifaddr en0)\n  if [ -z \"$IP\" ]; then\n    IP=$(ifconfig | grep 'inet ' | grep -v 127.0.0.1 | cut -d\\   -f2  | awk 'NR==1{print $1}')\n  fi\n  $PLISTBUDDY -c \"Add NSAppTransportSecurity:NSExceptionDomains:localhost:NSTemporaryExceptionAllowsInsecureHTTPLoads bool true\" \"$PLIST\"\n  $PLISTBUDDY -c \"Add NSAppTransportSecurity:NSExceptionDomains:$IP.xip.io:NSTemporaryExceptionAllowsInsecureHTTPLoads bool true\" \"$PLIST\"\n  echo $IP > \"$DEST/ip.txt\"\nfi\n\n";
 		};
+		4B396B2744A2B44CFAE2F19B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-WeexDemo/Pods-WeexDemo-resources.sh",
+				"${PODS_ROOT}/WeexSDK/pre-build/native-bundle-main.js",
+				"${PODS_ROOT}/WeexSDK/ios/sdk/WeexSDK/Resources/wx_load_error@3x.png",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/native-bundle-main.js",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/wx_load_error@3x.png",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WeexDemo/Pods-WeexDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4FBDCA8DAA9AE3F9E0411F65 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -448,19 +470,22 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WeexUITestDemo/Pods-WeexUITestDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		93B40B6146CF9798322AE2D0 /* [CP] Embed Pods Frameworks */ = {
+		E817BC71B779E5EBEEC9E743 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WeexDemo-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WeexUITestDemo/Pods-WeexUITestDemo-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -524,8 +549,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -571,8 +596,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -600,8 +625,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 75535G3SGF;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -628,9 +654,10 @@
 					"$(inherited)",
 					"-licucore",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.taobao.WeexPlayground;
+				PRODUCT_BUNDLE_IDENTIFIER = com.duqian.weex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -641,9 +668,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 75535G3SGF;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -670,9 +698,10 @@
 					"$(inherited)",
 					"-licucore",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.taobao.WeexPlayground;
+				PRODUCT_BUNDLE_IDENTIFIER = com.duqian.weex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -709,8 +738,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -745,8 +774,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
