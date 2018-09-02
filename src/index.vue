@@ -50,6 +50,10 @@
   import advertBox from './components/advertBox.vue'
   import motherLearning from './components/motherLearning.vue'
   const modal = weex.requireModule('modal')
+  const modalEvent = weex.requireModule('event')
+  //duqian新增原生模块引用
+  const phoneModule = weex.requireModule('phoneModule')
+  const logModule = weex.requireModule("logModule");
 
   export default {
     components: { WxcMinibar, WxcTabBar, WxcPopover, mainNav, advertBox, motherLearning },
@@ -87,12 +91,60 @@
         this.$refs['wxc-popover'].wxcPopoverShow()
       },
       popoverButtonClicked (obj) {
-        modal.toast({ 'message': `key:${obj.key}, index:${obj.index}`, 'duration': 1 })
+        if(obj.index===0){
+          this.getNetStatus();
+        }else{
+          this.getPhoneInfo();
+          modal.toast({ 'message': `key:${obj.key}, index:${obj.index}`, 'duration': 1 })
+          //modalEvent.openURL("http://dotwe.org/raw/dist/6fe11640e8d25f2f98176e9643c08687.bundle.js")
+        }
       },
       wxcTabBarCurrentTabSelected (e) {
         const index = e.page;
         console.log(index);
-      }
+      },
+
+      //测试js调用原生方法
+      getPhoneInfo: function() {
+        logModule.log("测试js调用原生方法");
+        var that = this;
+        phoneModule.getPhoneInfo(function (event) { 
+            var object = JSON.stringify(event);
+            logModule.log("getPhoneInfo:"+object);
+            var obj =JSON.parse(event);
+            that.target  = "getPhoneInfo="+event;
+            modal.toast({
+              message: '客户端获取手机信息： '+that.target,
+              duration: 10
+            });
+          });
+      },
+      getNetStatus: function() {
+        phoneModule.isNetworkConnected(function(event){
+          var obj =JSON.parse(event);
+          logModule.log(obj.isConnected);//0表示未连接，1，已连接
+          logModule.log(obj.isConnected==1);
+          logModule.log('网络类型：'+obj.netType);
+          var object = obj.isConnected=='1'?'网络已连接':'网络未连接';
+          modal.toast({
+             message: '客户端网络状态： '+object+' 网络类型：'+obj.netType,
+             duration: 10
+           });
+        });
+      },
+    //测试weex是否支持某些模块和功能
+    testSupports: function() {
+        var net = weex.supports('@module/stream')  // true
+        var my = weex.supports('@module/MyMoudle')  // true
+        var dialog = weex.supports('@module/WeexDialogModule')  
+        var duqian = weex.supports('@module/MyMoudle.duqian')  // false
+        var mytest = weex.supports('@module/duqian')  // false
+        console.log("net", net);
+        modal.toast({
+          message:"是否有MyMoudle="+my+",dialog="+dialog+",是否支持stream= "+net+",mytest="+mytest,
+          duration: 10
+        });
+    },
     }
   };
 </script>

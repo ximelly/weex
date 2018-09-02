@@ -40,7 +40,7 @@ subprojects {
         minSdkVersion=14
         appMinSdkVersion=15
         targetSdkVersion=26
-        supportLibVersion="26.1.0"
+        supportLibVersion="26+"
         fastjsonLibVersion="1.1.46.android"
     }
 }
