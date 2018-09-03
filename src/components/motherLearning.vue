@@ -9,6 +9,7 @@
 </template>
 <style scoped>
   .questionList{
+    width:750px;
     padding:0 30px;
     background-color:#ffffff;
   }

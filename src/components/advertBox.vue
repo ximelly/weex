@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <slider class="slider" auto-play="true" interval="2000">
       <div class="frame" v-for="item in bannerList" :key="item.advId">
         <image class="image" resize="cover" :src="item.imgUrl"></image>
@@ -40,6 +40,7 @@ module.exports = {
 </script>
 
 <style scoped>
+  .container{width:750px;background-color:#ffffff;}
   .slider,.frame{
     width: 750px;
     height: 450px;

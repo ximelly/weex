@@ -15,7 +15,7 @@
 	</div>
 </template>
 <style>
-  .container{background-color:#ffffff;}
+  .container{width:750px;background-color:#ffffff;}
   .imageList{
     flex-direction: row;
     height:160px;

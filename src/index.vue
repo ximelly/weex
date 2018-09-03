@@ -5,7 +5,7 @@
                  title-type="icon"
                  @wxcTabBarCurrentTabSelected="wxcTabBarCurrentTabSelected">
       <!--The first page content-->
-      <div class="item-container">
+      <scroller class="item-container" :style="contentStyle">
         <wxc-minibar background-color="#FFF3CD" @wxcMinibarRightButtonClicked="mine">
           <image src="https://gw.alicdn.com/tfs/TB1Vm3abuuSBuNjy1XcXXcYjFXa-64-64.png"
                  slot="left"
@@ -19,30 +19,22 @@
              :arrowPosition="popoverArrowPosition"
              @wxcPopoverButtonClicked="popoverButtonClicked"></wxc-popover>
         <advert-box></advert-box>
-        <div class="fw"><main-nav></main-nav></div>
+        <main-nav></main-nav>
         <mother-learning></mother-learning>
-     </div>
+     </scroller>
       
       <!--The second page content-->
-      <div class="item-container"><text>Hot</text></div>
+      <div class="item-container" :style="contentStyle"><text>Hot</text></div>
       
       <!-- The third page content-->
-      <div class="item-container"><text>Message</text></div>
+      <div class="item-container" :style="contentStyle"><text>Message</text></div>
       
       <!-- The fourth page content-->
-      <div class="item-container"><text>My</text></div>
+      <div class="item-container" :style="contentStyle"><text>My</text></div>
     </wxc-tab-bar>
   </div>
 </template>
 
-<style scoped>
-  .item-container {
-    width: 750px;
-    background-color: #f2f3f4;
-    align-items: center;
-    justify-content: center;
-  }
-</style>
 <script>
   import {WxcMinibar, WxcTabBar, WxcPopover, Utils} from 'weex-ui'
   import { RETURN_ICON, QRCODE_ICON, QUESTION_ICON, TABLES } from './components/type.js'
@@ -95,8 +87,7 @@
           this.getNetStatus();
         }else{
           this.getPhoneInfo();
-          modal.toast({ 'message': `key:${obj.key}, index:${obj.index}`, 'duration': 1 })
-          //modalEvent.openURL("http://dotwe.org/raw/dist/6fe11640e8d25f2f98176e9643c08687.bundle.js")
+          //modal.toast({ 'message': `key:${obj.key}, index:${obj.index}`, 'duration': 1 })
         }
       },
       wxcTabBarCurrentTabSelected (e) {
@@ -149,12 +140,10 @@
   };
 </script>
 
-
-<style>
+<style scoped>
   .item-container {
     width: 750px;
-    align-items: center;
-    justify-content: center;
+    height:1000px;
+    background-color: #f2f3f4;
   }
-  .fw{width:750px;}
 </style>
