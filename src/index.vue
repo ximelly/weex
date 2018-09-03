@@ -5,7 +5,7 @@
                  title-type="icon"
                  @wxcTabBarCurrentTabSelected="wxcTabBarCurrentTabSelected">
       <!--The first page content-->
-      <scroller class="item-container" :style="contentStyle">
+      <div class="item-container" :style="contentStyle">
         <wxc-minibar background-color="#FFF3CD" @wxcMinibarRightButtonClicked="mine">
           <image src="https://gw.alicdn.com/tfs/TB1Vm3abuuSBuNjy1XcXXcYjFXa-64-64.png"
                  slot="left"
@@ -18,10 +18,12 @@
              :position="popoverPosition"
              :arrowPosition="popoverArrowPosition"
              @wxcPopoverButtonClicked="popoverButtonClicked"></wxc-popover>
-        <advert-box></advert-box>
-        <main-nav></main-nav>
-        <mother-learning></mother-learning>
-     </scroller>
+        <scroller :style="contentStyleInner">
+          <advert-box ref="banner"></advert-box>
+          <main-nav></main-nav>
+          <mother-learning></mother-learning>
+        </scroller>
+     </div>
       
       <!--The second page content-->
       <div class="item-container" :style="contentStyle"><text>Hot</text></div>
@@ -45,7 +47,8 @@
   const modalEvent = weex.requireModule('event')
   //duqian新增原生模块引用
   const phoneModule = weex.requireModule('phoneModule')
-  const logModule = weex.requireModule("logModule");
+  const logModule = weex.requireModule("logModule")
+  const dom = weex.requireModule('dom')
 
   export default {
     components: { WxcMinibar, WxcTabBar, WxcPopover, mainNav, advertBox, motherLearning },
@@ -77,6 +80,7 @@
       const tabPageHeight = Utils.env.getPageHeight();
       const { tabStyles } = this;
       this.contentStyle = { height: (tabPageHeight - tabStyles.height) + 'px' };
+      this.contentStyleInner = { height: (tabPageHeight - tabStyles.height-90) + 'px' };
     },
     methods: {
       mine () {
@@ -90,9 +94,9 @@
           //modal.toast({ 'message': `key:${obj.key}, index:${obj.index}`, 'duration': 1 })
         }
       },
-      wxcTabBarCurrentTabSelected (e) {
-        const index = e.page;
-        console.log(index);
+      wxcTabBarCurrentTabSelected (e) {//切换tab
+        dom.scrollToElement(this.$refs['banner'], {});//滚动到banner
+        console.log(e.page);
       },
 
       //测试js调用原生方法
