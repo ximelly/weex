@@ -1,13 +1,13 @@
 <template>
 	<div class="container">
 		<div class="imageList">
-			<div v-for="item in imageList" class="imageIcon" :key="item.index" v-if="item.index<=3">
+			<div v-for="item in imageList" class="imageIcon" :key="item.index" v-if="item.index<=3" @click="nav_click(item)">
 				<image :src="item.url" class="image" />
 				<div class="textOut"><text lines="1" class="text">{{item.imageText}}</text></div>
 			</div>
 		</div>
 		<div class="imageList">
-			<div v-for="item in imageList" class="imageIcon" :key="item.index" v-if="item.index>3">
+			<div v-for="item in imageList" class="imageIcon" :key="item.index" v-if="item.index>3" @click="nav_click(item)">
 				<image :src="item.url" class="image" />
 				<div class="textOut"><text lines="1" class="text">{{item.imageText}}</text></div>
 			</div>
@@ -32,6 +32,8 @@
 </style>
 
 <script>
+const modal = weex.requireModule('modal')
+const navigator = weex.requireModule('navigator')
 module.exports = {
   data: function () {
     const imageHead = 'https://img2.mama100.com/o2oHomePage/201712/2c918082604496630160530c57'
@@ -44,6 +46,17 @@ module.exports = {
     return {
       imageList: imageList
     };
+  },
+  methods: {
+    nav_click: function(item){
+      console.log(item.index);
+      navigator.push({
+        url: 'https://www.baidu.com/',
+        animated: "true"
+      }, event => {
+        modal.toast({ message: 'callback: '})
+      })
+    }
   }
 };
 </script>
