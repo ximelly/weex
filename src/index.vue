@@ -38,10 +38,12 @@
 
   export default {
     components: { WxcTabBar, productList, home, mine},
-    data: () => ({
-      tabTitles: TABLES.tabTitles,
-      tabStyles: TABLES.tabStyles
-    }),
+    data:function(){
+      return {
+        tabTitles: TABLES.tabTitles,
+        tabStyles: TABLES.tabStyles
+      }
+    },
     created () {
       const tabPageHeight = Utils.env.getPageHeight();
       const { tabStyles } = this;

@@ -28,6 +28,7 @@
   var modal = weex.requireModule('modal')
   module.exports = {
     data: function () {
+      return {}
     },
     methods: {
       save: function () {
