@@ -21,7 +21,9 @@
       </div>
       
       <!-- The fourth page content-->
-      <div class="item-container" :style="contentStyle"><text>My</text></div>
+      <div class="item-container" :style="contentStyle">
+        <mine></mine>
+      </div>
     </wxc-tab-bar>
   </div>
 </template>
@@ -31,10 +33,11 @@
   import { TABLES } from './components/type.js'
   import productList from './pages/productList.vue'
   import home from './pages/home.vue'
+  import mine from './pages/mine.vue'
   const dom = weex.requireModule('dom')
 
   export default {
-    components: { WxcTabBar, productList, home},
+    components: { WxcTabBar, productList, home, mine},
     data: () => ({
       tabTitles: TABLES.tabTitles,
       tabStyles: TABLES.tabStyles
