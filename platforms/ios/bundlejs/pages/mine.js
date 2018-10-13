@@ -62,26 +62,26 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ 	return __webpack_require__(__webpack_require__.s = 53);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 12:
+/***/ 35:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = []
 
 /* styles */
-__vue_styles__.push(__webpack_require__(6)
+__vue_styles__.push(__webpack_require__(36)
 )
 
 /* script */
-__vue_exports__ = __webpack_require__(7)
+__vue_exports__ = __webpack_require__(37)
 
 /* template */
-var __vue_template__ = __webpack_require__(8)
+var __vue_template__ = __webpack_require__(38)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -93,10 +93,10 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "F:\\learning\\weex\\demo\\src\\src\\components\\motherLearning.vue"
+__vue_options__.__file = "F:\\learning\\weex\\firstDemo\\src\\pages\\mine.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-3cda5236"
+__vue_options__._scopeId = "data-v-03f5e41e"
 __vue_options__.style = __vue_options__.style || {}
 __vue_styles__.forEach(function (module) {
   for (var name in module) {
@@ -108,45 +108,38 @@ if (typeof __register_static_styles__ === "function") {
 }
 
 module.exports = __vue_exports__
-module.exports.el = 'true'
-new Vue(module.exports)
 
 
 /***/ }),
 
-/***/ 6:
+/***/ 36:
 /***/ (function(module, exports) {
 
 module.exports = {
-  "questionList": {
-    "paddingTop": 0,
-    "paddingRight": "30",
-    "paddingBottom": 0,
-    "paddingLeft": "30"
-  },
-  "modelTitle": {
-    "color": "#636666",
+  "button": {
+    "fontSize": "36",
+    "width": "200",
+    "height": "80",
+    "lineHeight": "80",
+    "marginTop": "30",
+    "marginRight": "275",
+    "marginBottom": "30",
+    "marginLeft": "275",
+    "color": "#41B883",
     "textAlign": "center",
-    "height": "100",
-    "lineHeight": "100",
-    "marginTop": "20"
+    "backgroundColor": "#ff4400"
   },
-  "questionTitle": {
-    "lines": 1,
-    "textOverflow": "ellipsis"
-  },
-  "questionContent": {
-    "color": "#999999",
-    "lineHeight": "46",
-    "lines": 2,
-    "textOverflow": "ellipsis",
-    "paddingTop": "20"
+  "img": {
+    "marginTop": "50",
+    "marginRight": "75",
+    "marginBottom": "30",
+    "marginLeft": "75"
   }
 }
 
 /***/ }),
 
-/***/ 7:
+/***/ 37:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -178,59 +171,76 @@ module.exports = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
-var stream = weex.requireModule('stream');
+var modal = weex.requireModule('modal');
 module.exports = {
   data: function data() {
     return {
-      questionList: []
+      plat: weex.config.env.platform
     };
   },
-  created: function created() {
-    var _this = this;
-    stream.fetch({
-      method: 'GET',
-      url: 'https://m.mama100.com/know/questionEssenceListInIndex.do?accessToken=undefined&devid=80A2C2DB9A4A0ACDF0F62ED0E858D1F5&tagId=-1&tsno=27D9FE7FA10772260436D14DD32FFB42153448577588605925553418006261'
-    }, function (ret) {
-      if (!ret.ok) {
-        _this.questionList = [];
+  methods: {
+    save: function save() {
+      if (this.plat !== "Web") {
+        this.$refs['img'].save(function (result) {
+          if (result.success) {
+            modal.toast({ message: "保存成功 " });
+          } else {
+            modal.toast({ message: result.errorDesc });
+          }
+        });
       } else {
-        _this.questionList = JSON.parse(ret.data).response.allQuestionList;
+        console.log("haha:" + this.plat);
       }
-    });
+    }
   }
 };
 
 /***/ }),
 
-/***/ 8:
+/***/ 38:
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: ["questionList"]
-  }, [_vm._m(0), _vm._l((_vm.questionList), function(item) {
-    return _c('div', {
-      key: item.quesId
-    }, [_c('text', {
-      staticClass: ["questionTitle"]
-    }, [_vm._v(_vm._s(item.title))]), _c('text', {
-      staticClass: ["questionContent"]
-    }, [_vm._v(_vm._s(item.content))])])
-  })], 2)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('text', {
-    staticClass: ["modelTitle"]
-  }, [_vm._v("修改title")])])
-}]}
+  return _c('div', [_c('image', {
+    ref: "img",
+    staticClass: ["img"],
+    staticStyle: {
+      width: "600px",
+      height: "800px"
+    },
+    attrs: {
+      "src": "http://weixin.mama100.cn/wmall/images/mine.jpg\n"
+    }
+  }), (_vm.plat !== 'Web') ? _c('text', {
+    staticClass: ["button"],
+    attrs: {
+      "value": "SaveImg",
+      "type": "primary"
+    },
+    on: {
+      "click": _vm.save
+    }
+  }, [_vm._v("保存")]) : _vm._e()])
+},staticRenderFns: []}
 module.exports.render._withStripped = true
+
+/***/ }),
+
+/***/ 53:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _mine = __webpack_require__(35);
+
+var _mine2 = _interopRequireDefault(_mine);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_mine2.default.el = '#root';
+new Vue(_mine2.default);
 
 /***/ })
 

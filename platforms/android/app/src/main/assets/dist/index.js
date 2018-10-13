@@ -1876,7 +1876,7 @@ var modal = weex.requireModule('modal'); //
 //
 
 var modalEvent = weex.requireModule('event');
-//duqian新增原生模块引用
+//原生模块引用
 var phoneModule = weex.requireModule('phoneModule');
 var logModule = weex.requireModule("logModule");
 module.exports = {
@@ -1886,11 +1886,11 @@ module.exports = {
       content: "haha",
       btns: [{
         icon: _type.QRCODE_ICON,
-        text: 'My Qrcode',
+        text: '获取网络信息',
         key: 'key-qrcode'
       }, {
         icon: _type.QUESTION_ICON,
-        text: 'Help',
+        text: '获取设备信息',
         key: 'key-help'
       }],
       popoverPosition: {

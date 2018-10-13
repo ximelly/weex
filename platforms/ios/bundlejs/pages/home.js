@@ -62,14 +62,62 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 13);
+/******/ 	return __webpack_require__(__webpack_require__.s = 52);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __vue_exports__, __vue_options__
+var __vue_styles__ = []
+
+/* styles */
+__vue_styles__.push(__webpack_require__(1)
+)
+
+/* script */
+__vue_exports__ = __webpack_require__(2)
+
+/* template */
+var __vue_template__ = __webpack_require__(3)
+__vue_options__ = __vue_exports__ = __vue_exports__ || {}
+if (
+  typeof __vue_exports__.default === "object" ||
+  typeof __vue_exports__.default === "function"
+) {
+if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
+__vue_options__ = __vue_exports__ = __vue_exports__.default
+}
+if (typeof __vue_options__ === "function") {
+  __vue_options__ = __vue_options__.options
+}
+__vue_options__.__file = "F:\\learning\\weex\\firstDemo\\src\\components\\advertBox.vue"
+__vue_options__.render = __vue_template__.render
+__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+__vue_options__._scopeId = "data-v-788dd417"
+__vue_options__.style = __vue_options__.style || {}
+__vue_styles__.forEach(function (module) {
+  for (var name in module) {
+    __vue_options__.style[name] = module[name]
+  }
+})
+if (typeof __register_static_styles__ === "function") {
+  __register_static_styles__(__vue_options__._scopeId, __vue_styles__)
+}
+
+module.exports = __vue_exports__
+
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports) {
 
 module.exports = {
+  "container": {
+    "width": "750",
+    "backgroundColor": "#ffffff"
+  },
   "slider": {
     "width": "750",
     "height": "450"
@@ -95,7 +143,7 @@ module.exports = {
 }
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -142,11 +190,13 @@ module.exports = {
 };
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('slider', {
+  return _c('div', {
+    staticClass: ["container"]
+  }, [_c('slider', {
     staticClass: ["slider"],
     attrs: {
       "autoPlay": "true",
@@ -170,10 +220,58 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 module.exports.render._withStripped = true
 
 /***/ }),
-/* 3 */
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __vue_exports__, __vue_options__
+var __vue_styles__ = []
+
+/* styles */
+__vue_styles__.push(__webpack_require__(5)
+)
+
+/* script */
+__vue_exports__ = __webpack_require__(6)
+
+/* template */
+var __vue_template__ = __webpack_require__(7)
+__vue_options__ = __vue_exports__ = __vue_exports__ || {}
+if (
+  typeof __vue_exports__.default === "object" ||
+  typeof __vue_exports__.default === "function"
+) {
+if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
+__vue_options__ = __vue_exports__ = __vue_exports__.default
+}
+if (typeof __vue_options__ === "function") {
+  __vue_options__ = __vue_options__.options
+}
+__vue_options__.__file = "F:\\learning\\weex\\firstDemo\\src\\components\\mainNav.vue"
+__vue_options__.render = __vue_template__.render
+__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+__vue_options__._scopeId = "data-v-6c81682c"
+__vue_options__.style = __vue_options__.style || {}
+__vue_styles__.forEach(function (module) {
+  for (var name in module) {
+    __vue_options__.style[name] = module[name]
+  }
+})
+if (typeof __register_static_styles__ === "function") {
+  __register_static_styles__(__vue_options__._scopeId, __vue_styles__)
+}
+
+module.exports = __vue_exports__
+
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports) {
 
 module.exports = {
+  "container": {
+    "width": "750",
+    "backgroundColor": "#ffffff"
+  },
   "imageList": {
     "flexDirection": "row",
     "height": "160",
@@ -197,7 +295,7 @@ module.exports = {
 }
 
 /***/ }),
-/* 4 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -235,7 +333,10 @@ module.exports = {
 //
 //
 //
+//
 
+var modal = weex.requireModule('modal');
+var navigator = weex.requireModule('navigator');
 module.exports = {
   data: function data() {
     var imageHead = 'https://img2.mama100.com/o2oHomePage/201712/2c918082604496630160530c57';
@@ -248,20 +349,38 @@ module.exports = {
     return {
       imageList: imageList
     };
+  },
+  methods: {
+    nav_click: function nav_click(item) {
+      console.log(item.index);
+      navigator.push({
+        url: 'https://www.baidu.com/',
+        animated: "true"
+      }, function (event) {
+        modal.toast({ message: 'callback: ' });
+      });
+    }
   }
 };
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('div', {
+  return _c('div', {
+    staticClass: ["container"]
+  }, [_c('div', {
     staticClass: ["imageList"]
   }, _vm._l((_vm.imageList), function(item) {
     return (item.index <= 3) ? _c('div', {
       key: item.index,
-      staticClass: ["imageIcon"]
+      staticClass: ["imageIcon"],
+      on: {
+        "click": function($event) {
+          _vm.nav_click(item)
+        }
+      }
     }, [_c('image', {
       staticClass: ["image"],
       attrs: {
@@ -280,7 +399,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, _vm._l((_vm.imageList), function(item) {
     return (item.index > 3) ? _c('div', {
       key: item.index,
-      staticClass: ["imageIcon"]
+      staticClass: ["imageIcon"],
+      on: {
+        "click": function($event) {
+          _vm.nav_click(item)
+        }
+      }
     }, [_c('image', {
       staticClass: ["image"],
       attrs: {
@@ -299,15 +423,61 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 module.exports.render._withStripped = true
 
 /***/ }),
-/* 6 */
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __vue_exports__, __vue_options__
+var __vue_styles__ = []
+
+/* styles */
+__vue_styles__.push(__webpack_require__(9)
+)
+
+/* script */
+__vue_exports__ = __webpack_require__(10)
+
+/* template */
+var __vue_template__ = __webpack_require__(11)
+__vue_options__ = __vue_exports__ = __vue_exports__ || {}
+if (
+  typeof __vue_exports__.default === "object" ||
+  typeof __vue_exports__.default === "function"
+) {
+if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
+__vue_options__ = __vue_exports__ = __vue_exports__.default
+}
+if (typeof __vue_options__ === "function") {
+  __vue_options__ = __vue_options__.options
+}
+__vue_options__.__file = "F:\\learning\\weex\\firstDemo\\src\\components\\motherLearning.vue"
+__vue_options__.render = __vue_template__.render
+__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+__vue_options__._scopeId = "data-v-a7443b1e"
+__vue_options__.style = __vue_options__.style || {}
+__vue_styles__.forEach(function (module) {
+  for (var name in module) {
+    __vue_options__.style[name] = module[name]
+  }
+})
+if (typeof __register_static_styles__ === "function") {
+  __register_static_styles__(__vue_options__._scopeId, __vue_styles__)
+}
+
+module.exports = __vue_exports__
+
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports = {
   "questionList": {
+    "width": "750",
     "paddingTop": 0,
     "paddingRight": "30",
     "paddingBottom": 0,
-    "paddingLeft": "30"
+    "paddingLeft": "30",
+    "backgroundColor": "#ffffff"
   },
   "modelTitle": {
     "color": "#636666",
@@ -330,12 +500,14 @@ module.exports = {
 }
 
 /***/ }),
-/* 7 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
+//
+//
 //
 //
 //
@@ -393,7 +565,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 8 */
+/* 11 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -411,12 +583,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('text', {
     staticClass: ["modelTitle"]
-  }, [_vm._v("修改title")])])
+  }, [_vm._v("妈妈们在问什么")])])
 }]}
 module.exports.render._withStripped = true
 
 /***/ }),
-/* 9 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -431,7 +603,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
                                                                                                                                                                                                                                                                                 * Created by Tw93 on 17/11/01
                                                                                                                                                                                                                                                                                 */
 
-var _urlParse = __webpack_require__(16);
+var _urlParse = __webpack_require__(14);
 
 var _urlParse2 = _interopRequireDefault(_urlParse);
 
@@ -770,75 +942,7 @@ var Utils = {
 exports.default = Utils;
 
 /***/ }),
-/* 10 */,
-/* 11 */,
-/* 12 */,
 /* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __vue_exports__, __vue_options__
-var __vue_styles__ = []
-
-/* styles */
-__vue_styles__.push(__webpack_require__(14)
-)
-
-/* script */
-__vue_exports__ = __webpack_require__(15)
-
-/* template */
-var __vue_template__ = __webpack_require__(39)
-__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-if (
-  typeof __vue_exports__.default === "object" ||
-  typeof __vue_exports__.default === "function"
-) {
-if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
-__vue_options__ = __vue_exports__ = __vue_exports__.default
-}
-if (typeof __vue_options__ === "function") {
-  __vue_options__ = __vue_options__.options
-}
-__vue_options__.__file = "F:\\learning\\weex\\demo\\src\\src\\index.vue"
-__vue_options__.render = __vue_template__.render
-__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-21aa44b0"
-__vue_options__.style = __vue_options__.style || {}
-__vue_styles__.forEach(function (module) {
-  for (var name in module) {
-    __vue_options__.style[name] = module[name]
-  }
-})
-if (typeof __register_static_styles__ === "function") {
-  __register_static_styles__(__vue_options__._scopeId, __vue_styles__)
-}
-
-module.exports = __vue_exports__
-module.exports.el = 'true'
-new Vue(module.exports)
-
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports) {
-
-module.exports = {
-  "wrapper": {
-    "backgroundColor": "#ff4400"
-  },
-  "item-container": {
-    "width": "750",
-    "alignItems": "center",
-    "justifyContent": "center"
-  },
-  "fw": {
-    "width": "750",
-    "backgroundColor": "#ff4400"
-  }
-}
-
-/***/ }),
-/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -847,162 +951,61 @@ module.exports = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _utils = __webpack_require__(9);
-
-var _utils2 = _interopRequireDefault(_utils);
-
-var _wxcPopover = __webpack_require__(20);
-
-var _wxcPopover2 = _interopRequireDefault(_wxcPopover);
-
-var _wxcTabBar = __webpack_require__(25);
-
-var _wxcTabBar2 = _interopRequireDefault(_wxcTabBar);
-
-var _wxcMinibar = __webpack_require__(30);
-
-var _wxcMinibar2 = _interopRequireDefault(_wxcMinibar);
-
-var _type = __webpack_require__(35);
-
-var _mainNav = __webpack_require__(36);
-
-var _mainNav2 = _interopRequireDefault(_mainNav);
-
-var _advertBox = __webpack_require__(37);
-
-var _advertBox2 = _interopRequireDefault(_advertBox);
-
-var _motherLearning = __webpack_require__(38);
-
-var _motherLearning2 = _interopRequireDefault(_motherLearning);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var modal = weex.requireModule('modal'); //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-exports.default = {
-  name: 'App',
-  components: { WxcMinibar: _wxcMinibar2.default, WxcTabBar: _wxcTabBar2.default, WxcPopover: _wxcPopover2.default, mainNav: _mainNav2.default, advertBox: _advertBox2.default, motherLearning: _motherLearning2.default },
-  data: function data() {
-    return {
-      leftButton: _type.RETURN_ICON,
-      TABLES: _type.TABLES,
-      btns: [{
-        icon: _type.QRCODE_ICON,
-        text: 'My Qrcode',
-        key: 'key-qrcode'
-      }, {
-        icon: _type.QUESTION_ICON,
-        text: 'Help',
-        key: 'key-help'
-      }],
-      popoverPosition: {
-        x: -7,
-        y: 60
-      },
-      popoverArrowPosition: {
-        pos: 'top',
-        x: -15
-      }
-    };
-  },
-  created: function created() {
-    console.log(_utils2.default);
-    var tabPageHeight = _utils2.default.env.getPageHeight();
-    // 如果页面没有导航栏，可以用下面这个计算高度的方法
-    // const tabPageHeight = env.deviceHeight / env.deviceWidth * 750
-    this.contentStyle = { height: tabPageHeight - this.height + 'px' };
-  },
-
-  methods: {
-    mine: function mine() {
-      this.$refs['wxc-popover'].wxcPopoverShow();
-    },
-    popoverButtonClicked: function popoverButtonClicked(obj) {
-      modal.toast({ 'message': 'key:' + obj.key + ', index:' + obj.index, 'duration': 1 });
-    },
-    wxcTabBarCurrentTabSelected: function wxcTabBarCurrentTabSelected() {
-      console.log(1);
-    }
+var WEEXUI_ICON = exports.WEEXUI_ICON = 'https://gw.alicdn.com/tfs/TB1JpgJRFXXXXc7XpXXXXXXXXXX-800-800.png';
+var RETURN_ICON = exports.RETURN_ICON = 'https://gw.alicdn.com/tfs/TB1cAYsbv2H8KJjy0FcXXaDlFXa-30-53.png';
+var SCAN_ICON = exports.SCAN_ICON = 'https://gw.alicdn.com/tfs/TB1Vm3abuuSBuNjy1XcXXcYjFXa-64-64.png';
+var QRCODE_ICON = exports.QRCODE_ICON = 'https://gw.alicdn.com/tfs/TB1U93abuuSBuNjy1XcXXcYjFXa-64-64.png';
+var QUESTION_ICON = exports.QUESTION_ICON = 'https://gw.alicdn.com/tfs/TB1MWDTbwmTBuNjy1XbXXaMrVXa-64-64.png';
+var TABLES = exports.TABLES = {
+  tabTitles: [{
+    title: '首页',
+    icon: 'https://gw.alicdn.com/tfs/TB1MWXdSpXXXXcmXXXXXXXXXXXX-72-72.png',
+    activeIcon: 'https://gw.alicdn.com/tfs/TB1kCk2SXXXXXXFXFXXXXXXXXXX-72-72.png'
+  }, {
+    title: '购物',
+    icon: 'https://gw.alicdn.com/tfs/TB1ARoKSXXXXXc9XVXXXXXXXXXX-72-72.png',
+    activeIcon: 'https://gw.alicdn.com/tfs/TB19Z72SXXXXXamXFXXXXXXXXXX-72-72.png'
+  }, {
+    title: '新闻',
+    icon: 'https://gw.alicdn.com/tfs/TB1VKMISXXXXXbyaXXXXXXXXXXX-72-72.png',
+    activeIcon: 'https://gw.alicdn.com/tfs/TB1aTgZSXXXXXazXFXXXXXXXXXX-72-72.png',
+    badge: 5
+  }, {
+    title: '我的',
+    icon: 'https://gw.alicdn.com/tfs/TB1Do3tSXXXXXXMaFXXXXXXXXXX-72-72.png',
+    activeIcon: 'https://gw.alicdn.com/tfs/TB1LiNhSpXXXXaWXXXXXXXXXXXX-72-72.png',
+    dot: true
+  }],
+  tabStyles: {
+    bgColor: '#FFFFFF',
+    titleColor: '#333333',
+    activeTitleColor: '#FF5E00',
+    activeBgColor: '#FFFFFF',
+    isActiveTitleBold: true,
+    iconWidth: 70,
+    iconHeight: 70,
+    width: 160,
+    height: 120,
+    fontSize: 24,
+    textPaddingLeft: 10,
+    textPaddingRight: 10,
+    borderWidth: 1,
+    borderColor: '#f40',
+    borderTopStyle: 'solid'
   }
 };
 
 /***/ }),
-/* 16 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var required = __webpack_require__(18),
-    qs = __webpack_require__(19),
-    protocolre = /^([a-z][a-z0-9.+-]*:)?(\/\/)?([\S\s]*)/i,
-    slashes = /^[A-Za-z][A-Za-z0-9+-.]*:\/\//;
+var required = __webpack_require__(15)
+  , qs = __webpack_require__(16)
+  , protocolre = /^([a-z][a-z0-9.+-]*:)?(\/\/)?([\S\s]*)/i
+  , slashes = /^[A-Za-z][A-Za-z0-9+-.]*:\/\//;
 
 /**
  * These are the parse rules for the URL parser, it informs the parser
@@ -1016,16 +1019,17 @@ var required = __webpack_require__(18),
  * 3. Inherit from location if non existing in the parser.
  * 4. `toLowerCase` the resulting value.
  */
-var rules = [['#', 'hash'], // Extract from the back.
-['?', 'query'], // Extract from the back.
-function sanitize(address) {
-  // Sanitize what is left of the address
-  return address.replace('\\', '/');
-}, ['/', 'pathname'], // Extract from the back.
-['@', 'auth', 1], // Extract from the front.
-[NaN, 'host', undefined, 1, 1], // Set left over value.
-[/:(\d+)$/, 'port', undefined, 1], // RegExp the back.
-[NaN, 'hostname', undefined, 1, 1] // Set left over.
+var rules = [
+  ['#', 'hash'],                        // Extract from the back.
+  ['?', 'query'],                       // Extract from the back.
+  function sanitize(address) {          // Sanitize what is left of the address
+    return address.replace('\\', '/');
+  },
+  ['/', 'pathname'],                    // Extract from the back.
+  ['@', 'auth', 1],                     // Extract from the front.
+  [NaN, 'host', undefined, 1, 1],       // Set left over value.
+  [/:(\d+)$/, 'port', undefined, 1],    // RegExp the back.
+  [NaN, 'hostname', undefined, 1, 1]    // Set left over.
 ];
 
 /**
@@ -1054,17 +1058,15 @@ function lolcation(loc) {
   var location = global && global.location || {};
   loc = loc || location;
 
-  var finaldestination = {},
-      type = typeof loc === 'undefined' ? 'undefined' : _typeof(loc),
-      key;
+  var finaldestination = {}
+    , type = typeof loc
+    , key;
 
   if ('blob:' === loc.protocol) {
     finaldestination = new Url(unescape(loc.pathname), {});
   } else if ('string' === type) {
     finaldestination = new Url(loc, {});
-    for (key in ignore) {
-      delete finaldestination[key];
-    }
+    for (key in ignore) delete finaldestination[key];
   } else if ('object' === type) {
     for (key in loc) {
       if (key in ignore) continue;
@@ -1113,11 +1115,11 @@ function extractProtocol(address) {
  * @private
  */
 function resolve(relative, base) {
-  var path = (base || '/').split('/').slice(0, -1).concat(relative.split('/')),
-      i = path.length,
-      last = path[i - 1],
-      unshift = false,
-      up = 0;
+  var path = (base || '/').split('/').slice(0, -1).concat(relative.split('/'))
+    , i = path.length
+    , last = path[i - 1]
+    , unshift = false
+    , up = 0;
 
   while (i--) {
     if (path[i] === '.') {
@@ -1157,16 +1159,11 @@ function Url(address, location, parser) {
     return new Url(address, location, parser);
   }
 
-  var relative,
-      extracted,
-      parse,
-      instruction,
-      index,
-      key,
-      instructions = rules.slice(),
-      type = typeof location === 'undefined' ? 'undefined' : _typeof(location),
-      url = this,
-      i = 0;
+  var relative, extracted, parse, instruction, index, key
+    , instructions = rules.slice()
+    , type = typeof location
+    , url = this
+    , i = 0;
 
   //
   // The following if statements allows this module two have compatibility with
@@ -1226,12 +1223,14 @@ function Url(address, location, parser) {
           address = address.slice(0, index);
         }
       }
-    } else if (index = parse.exec(address)) {
+    } else if ((index = parse.exec(address))) {
       url[key] = index[1];
       address = address.slice(0, index.index);
     }
 
-    url[key] = url[key] || (relative && instruction[3] ? location[key] || '' : '');
+    url[key] = url[key] || (
+      relative && instruction[3] ? location[key] || '' : ''
+    );
 
     //
     // Hostname, host and protocol should be lowercased so they can be used to
@@ -1250,7 +1249,12 @@ function Url(address, location, parser) {
   //
   // If the URL is relative, resolve the pathname against the base URL.
   //
-  if (relative && location.slashes && url.pathname.charAt(0) !== '/' && (url.pathname !== '' || location.pathname !== '')) {
+  if (
+      relative
+    && location.slashes
+    && url.pathname.charAt(0) !== '/'
+    && (url.pathname !== '' || location.pathname !== '')
+  ) {
     url.pathname = resolve(url.pathname, location.pathname);
   }
 
@@ -1274,7 +1278,9 @@ function Url(address, location, parser) {
     url.password = instruction[1] || '';
   }
 
-  url.origin = url.protocol && url.host && url.protocol !== 'file:' ? url.protocol + '//' + url.host : 'null';
+  url.origin = url.protocol && url.host && url.protocol !== 'file:'
+    ? url.protocol +'//'+ url.host
+    : 'null';
 
   //
   // The href is just the compiled result.
@@ -1314,7 +1320,7 @@ function set(part, value, fn) {
         url.host = url.hostname;
         url[part] = '';
       } else if (value) {
-        url.host = url.hostname + ':' + value;
+        url.host = url.hostname +':'+ value;
       }
 
       break;
@@ -1322,7 +1328,7 @@ function set(part, value, fn) {
     case 'hostname':
       url[part] = value;
 
-      if (url.port) value += ':' + url.port;
+      if (url.port) value += ':'+ url.port;
       url.host = value;
       break;
 
@@ -1365,7 +1371,9 @@ function set(part, value, fn) {
     if (ins[4]) url[ins[1]] = url[ins[1]].toLowerCase();
   }
 
-  url.origin = url.protocol && url.host && url.protocol !== 'file:' ? url.protocol + '//' + url.host : 'null';
+  url.origin = url.protocol && url.host && url.protocol !== 'file:'
+    ? url.protocol +'//'+ url.host
+    : 'null';
 
   url.href = url.toString();
 
@@ -1382,9 +1390,9 @@ function set(part, value, fn) {
 function toString(stringify) {
   if (!stringify || 'function' !== typeof stringify) stringify = qs.stringify;
 
-  var query,
-      url = this,
-      protocol = url.protocol;
+  var query
+    , url = this
+    , protocol = url.protocol;
 
   if (protocol && protocol.charAt(protocol.length - 1) !== ':') protocol += ':';
 
@@ -1392,14 +1400,14 @@ function toString(stringify) {
 
   if (url.username) {
     result += url.username;
-    if (url.password) result += ':' + url.password;
+    if (url.password) result += ':'+ url.password;
     result += '@';
   }
 
   result += url.host + url.pathname;
 
-  query = 'object' === _typeof(url.query) ? stringify(url.query) : url.query;
-  if (query) result += '?' !== query.charAt(0) ? '?' + query : query;
+  query = 'object' === typeof url.query ? stringify(url.query) : url.query;
+  if (query) result += '?' !== query.charAt(0) ? '?'+ query : query;
 
   if (url.hash) result += url.hash;
 
@@ -1417,40 +1425,10 @@ Url.location = lolcation;
 Url.qs = qs;
 
 module.exports = Url;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(17)))
+
 
 /***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var g;
-
-// This works in non-strict mode
-g = function () {
-	return this;
-}();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1, eval)("this");
-} catch (e) {
-	// This works if the window reference is available
-	if ((typeof window === "undefined" ? "undefined" : _typeof(window)) === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-/***/ }),
-/* 18 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1465,7 +1443,6 @@ module.exports = g;
  * @returns {Boolean} Is it a default port for the given protocol
  * @api private
  */
-
 module.exports = function required(port, protocol) {
   protocol = protocol.split(':')[0];
   port = +port;
@@ -1475,27 +1452,28 @@ module.exports = function required(port, protocol) {
   switch (protocol) {
     case 'http':
     case 'ws':
-      return port !== 80;
+    return port !== 80;
 
     case 'https':
     case 'wss':
-      return port !== 443;
+    return port !== 443;
 
     case 'ftp':
-      return port !== 21;
+    return port !== 21;
 
     case 'gopher':
-      return port !== 70;
+    return port !== 70;
 
     case 'file':
-      return false;
+    return false;
   }
 
   return port !== 0;
 };
 
+
 /***/ }),
-/* 19 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1522,13 +1500,13 @@ function decode(input) {
  * @api public
  */
 function querystring(query) {
-  var parser = /([^=?&]+)=?([^&]*)/g,
-      result = {},
-      part;
+  var parser = /([^=?&]+)=?([^&]*)/g
+    , result = {}
+    , part;
 
   while (part = parser.exec(query)) {
-    var key = decode(part[1]),
-        value = decode(part[2]);
+    var key = decode(part[1])
+      , value = decode(part[2]);
 
     //
     // Prevent overriding of existing properties. This ensures that build-in
@@ -1562,7 +1540,7 @@ function querystringify(obj, prefix) {
 
   for (var key in obj) {
     if (has.call(obj, key)) {
-      pairs.push(encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]));
+      pairs.push(encodeURIComponent(key) +'='+ encodeURIComponent(obj[key]));
     }
   }
 
@@ -1575,29 +1553,12 @@ function querystringify(obj, prefix) {
 exports.stringify = querystringify;
 exports.parse = querystring;
 
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _index = __webpack_require__(21);
-
-Object.defineProperty(exports, 'default', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_index).default;
-  }
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
 /* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1612,7 +1573,7 @@ __vue_styles__.push(__webpack_require__(22)
 __vue_exports__ = __webpack_require__(23)
 
 /* template */
-var __vue_template__ = __webpack_require__(24)
+var __vue_template__ = __webpack_require__(34)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -1624,10 +1585,10 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "F:\\learning\\weex\\demo\\node_modules\\weex-ui\\packages\\wxc-popover\\index.vue"
+__vue_options__.__file = "F:\\learning\\weex\\firstDemo\\src\\pages\\home.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-23bac6dd"
+__vue_options__._scopeId = "data-v-324fb87d"
 __vue_options__.style = __vue_options__.style || {}
 __vue_styles__.forEach(function (module) {
   for (var name in module) {
@@ -1643,6 +1604,231 @@ module.exports = __vue_exports__
 
 /***/ }),
 /* 22 */
+/***/ (function(module, exports) {
+
+module.exports = {
+  "home_scroll": {
+    "paddingBottom": "20",
+    "backgroundColor": "#ffffff"
+  }
+}
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _utils = __webpack_require__(12);
+
+var _utils2 = _interopRequireDefault(_utils);
+
+var _wxcPopover = __webpack_require__(24);
+
+var _wxcPopover2 = _interopRequireDefault(_wxcPopover);
+
+var _wxcMinibar = __webpack_require__(29);
+
+var _wxcMinibar2 = _interopRequireDefault(_wxcMinibar);
+
+var _type = __webpack_require__(13);
+
+var _mainNav = __webpack_require__(4);
+
+var _mainNav2 = _interopRequireDefault(_mainNav);
+
+var _advertBox = __webpack_require__(0);
+
+var _advertBox2 = _interopRequireDefault(_advertBox);
+
+var _motherLearning = __webpack_require__(8);
+
+var _motherLearning2 = _interopRequireDefault(_motherLearning);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var modal = weex.requireModule('modal'); //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var modalEvent = weex.requireModule('event');
+//原生模块引用
+var phoneModule = weex.requireModule('phoneModule');
+var logModule = weex.requireModule("logModule");
+module.exports = {
+  components: { WxcMinibar: _wxcMinibar2.default, WxcPopover: _wxcPopover2.default, mainNav: _mainNav2.default, advertBox: _advertBox2.default, motherLearning: _motherLearning2.default },
+  data: function data() {
+    return {
+      content: "haha",
+      btns: [{
+        icon: _type.QRCODE_ICON,
+        text: '获取网络信息',
+        key: 'key-qrcode'
+      }, {
+        icon: _type.QUESTION_ICON,
+        text: '获取设备信息',
+        key: 'key-help'
+      }],
+      popoverPosition: {
+        x: -7,
+        y: 60
+      },
+      popoverArrowPosition: {
+        pos: 'top',
+        x: -15
+      }
+    };
+  },
+  created: function created() {
+    var tabPageHeight = _utils2.default.env.getPageHeight();
+    this.contentStyleInner = { height: tabPageHeight - 210 + 'px' };
+  },
+
+  methods: {
+    mine: function mine() {
+      this.$refs['wxc-popover'].wxcPopoverShow();
+    },
+    popoverButtonClicked: function popoverButtonClicked(obj) {
+      if (obj.index === 0) {
+        this.getNetStatus();
+      } else {
+        this.getPhoneInfo();
+        modal.toast({ 'message': 'key:' + obj.key + ', index:' + obj.index, 'duration': 1 });
+      }
+    },
+
+    //测试js调用原生方法
+    getPhoneInfo: function getPhoneInfo() {
+      logModule.log("测试js调用原生方法");
+      var that = this;
+      phoneModule.getPhoneInfo(function (event) {
+        var object = JSON.stringify(event);
+        logModule.log("getPhoneInfo:" + object);
+        var obj = JSON.parse(event);
+        that.target = "getPhoneInfo=" + event;
+        modal.toast({
+          message: '客户端获取手机信息： ' + that.target,
+          duration: 10
+        });
+      });
+    },
+    getNetStatus: function getNetStatus() {
+      phoneModule.isNetworkConnected(function (event) {
+        var obj = JSON.parse(event);
+        logModule.log(obj.isConnected); //0表示未连接，1，已连接
+        logModule.log(obj.isConnected == 1);
+        logModule.log('网络类型：' + obj.netType);
+        var object = obj.isConnected == '1' ? '网络已连接' : '网络未连接';
+        modal.toast({
+          message: '客户端网络状态： ' + object + ' 网络类型：' + obj.netType,
+          duration: 10
+        });
+      });
+    },
+    //测试weex是否支持某些模块和功能
+    testSupports: function testSupports() {
+      var net = weex.supports('@module/stream'); // true
+      var my = weex.supports('@module/MyMoudle'); // true
+      var dialog = weex.supports('@module/WeexDialogModule');
+      var duqian = weex.supports('@module/MyMoudle.duqian'); // false
+      var mytest = weex.supports('@module/duqian'); // false
+      console.log("net", net);
+      modal.toast({
+        message: "是否有MyMoudle=" + my + ",dialog=" + dialog + ",是否支持stream= " + net + ",mytest=" + mytest,
+        duration: 10
+      });
+    }
+  }
+};
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _index = __webpack_require__(25);
+
+Object.defineProperty(exports, 'default', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_index).default;
+  }
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __vue_exports__, __vue_options__
+var __vue_styles__ = []
+
+/* styles */
+__vue_styles__.push(__webpack_require__(26)
+)
+
+/* script */
+__vue_exports__ = __webpack_require__(27)
+
+/* template */
+var __vue_template__ = __webpack_require__(28)
+__vue_options__ = __vue_exports__ = __vue_exports__ || {}
+if (
+  typeof __vue_exports__.default === "object" ||
+  typeof __vue_exports__.default === "function"
+) {
+if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
+__vue_options__ = __vue_exports__ = __vue_exports__.default
+}
+if (typeof __vue_options__ === "function") {
+  __vue_options__ = __vue_options__.options
+}
+__vue_options__.__file = "F:\\learning\\weex\\firstDemo\\node_modules\\weex-ui\\packages\\wxc-popover\\index.vue"
+__vue_options__.render = __vue_template__.render
+__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+__vue_options__._scopeId = "data-v-e97beb1e"
+__vue_options__.style = __vue_options__.style || {}
+__vue_styles__.forEach(function (module) {
+  for (var name in module) {
+    __vue_options__.style[name] = module[name]
+  }
+})
+if (typeof __register_static_styles__ === "function") {
+  __register_static_styles__(__vue_options__._scopeId, __vue_styles__)
+}
+
+module.exports = __vue_exports__
+
+
+/***/ }),
+/* 26 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -1708,7 +1894,7 @@ module.exports = {
 }
 
 /***/ }),
-/* 23 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2038,7 +2224,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 24 */
+/* 28 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -2083,7 +2269,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 module.exports.render._withStripped = true
 
 /***/ }),
-/* 25 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2093,7 +2279,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _index = __webpack_require__(26);
+var _index = __webpack_require__(30);
 
 Object.defineProperty(exports, 'default', {
   enumerable: true,
@@ -2103,517 +2289,23 @@ Object.defineProperty(exports, 'default', {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __vue_exports__, __vue_options__
-var __vue_styles__ = []
-
-/* styles */
-__vue_styles__.push(__webpack_require__(27)
-)
-
-/* script */
-__vue_exports__ = __webpack_require__(28)
-
-/* template */
-var __vue_template__ = __webpack_require__(29)
-__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-if (
-  typeof __vue_exports__.default === "object" ||
-  typeof __vue_exports__.default === "function"
-) {
-if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
-__vue_options__ = __vue_exports__ = __vue_exports__.default
-}
-if (typeof __vue_options__ === "function") {
-  __vue_options__ = __vue_options__.options
-}
-__vue_options__.__file = "F:\\learning\\weex\\demo\\node_modules\\weex-ui\\packages\\wxc-tab-bar\\index.vue"
-__vue_options__.render = __vue_template__.render
-__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-2a373a93"
-__vue_options__.style = __vue_options__.style || {}
-__vue_styles__.forEach(function (module) {
-  for (var name in module) {
-    __vue_options__.style[name] = module[name]
-  }
-})
-if (typeof __register_static_styles__ === "function") {
-  __register_static_styles__(__vue_options__._scopeId, __vue_styles__)
-}
-
-module.exports = __vue_exports__
-
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports) {
-
-module.exports = {
-  "wxc-tab-page": {
-    "position": "absolute",
-    "top": 0,
-    "left": 0,
-    "right": 0,
-    "bottom": 0
-  },
-  "tab-title-list": {
-    "flexDirection": "row",
-    "justifyContent": "space-around"
-  },
-  "title-item": {
-    "justifyContent": "center",
-    "alignItems": "center",
-    "borderBottomStyle": "solid"
-  },
-  "tab-page-wrap": {
-    "width": "750",
-    "flex": 1,
-    "overflow": "hidden"
-  },
-  "tab-container": {
-    "flex": 1,
-    "flexDirection": "row",
-    "position": "absolute"
-  },
-  "tab-text": {
-    "lines": 1,
-    "textOverflow": "ellipsis"
-  },
-  "desc-tag": {
-    "position": "absolute",
-    "top": "10",
-    "right": "20",
-    "borderBottomRightRadius": "14",
-    "borderBottomLeftRadius": 0,
-    "borderTopLeftRadius": "14",
-    "borderTopRightRadius": "14",
-    "backgroundColor": "#FF5E00",
-    "height": "26",
-    "alignItems": "center",
-    "justifyContent": "center",
-    "paddingLeft": "6",
-    "paddingRight": "6"
-  },
-  "dot": {
-    "width": "12",
-    "height": "12",
-    "borderBottomRightRadius": "12",
-    "borderBottomLeftRadius": "12",
-    "borderTopLeftRadius": "12",
-    "borderTopRightRadius": "12",
-    "position": "absolute",
-    "top": "10",
-    "right": "40",
-    "backgroundColor": "#FF5E00"
-  },
-  "desc-text": {
-    "fontSize": "18",
-    "color": "#ffffff"
-  }
-}
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _utils = __webpack_require__(9);
-
-var _utils2 = _interopRequireDefault(_utils);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-var dom = weex.requireModule('dom');
-var animation = weex.requireModule('animation');
-exports.default = {
-  props: {
-    tabTitles: {
-      type: Array,
-      default: function _default() {
-        return [];
-      }
-    },
-    tabStyles: {
-      type: Object,
-      default: function _default() {
-        return {
-          bgColor: '#FFFFFF',
-          titleColor: '#666666',
-          activeTitleColor: '#3D3D3D',
-          activeBgColor: '#FFFFFF',
-          isActiveTitleBold: true,
-          iconWidth: 70,
-          iconHeight: 70,
-          width: 160,
-          height: 120,
-          fontSize: 24,
-          activeBottomColor: '#FFC900',
-          activeBottomWidth: 120,
-          activeBottomHeight: 6,
-          textPaddingLeft: 10,
-          textPaddingRight: 10
-        };
-      }
-    },
-    titleType: {
-      type: String,
-      default: 'icon'
-    },
-    titleUseSlot: {
-      type: Boolean,
-      default: false
-    },
-    isTabView: {
-      type: Boolean,
-      default: true
-    },
-    duration: {
-      type: [Number, String],
-      default: 300
-    },
-    timingFunction: {
-      type: String,
-      default: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-    },
-    wrapBgColor: {
-      type: String,
-      default: '#f2f3f4'
-    }
-  },
-  data: function data() {
-    return {
-      currentPage: 0,
-      translateX: 0
-    };
-  },
-  created: function created() {
-    var titleType = this.titleType,
-        tabStyles = this.tabStyles;
-
-    if (titleType === 'iconFont' && tabStyles.iconFontUrl) {
-      dom.addRule('fontFace', {
-        'fontFamily': "wxcIconFont",
-        'src': 'url(\'' + tabStyles.iconFontUrl + '\')'
-      });
-    }
-    this.isIPhoneX = _utils2.default.env.isIPhoneX();
-  },
-
-  methods: {
-    next: function next() {
-      var page = this.currentPage;
-      if (page < this.tabTitles.length - 1) {
-        page++;
-      }
-      this.setPage(page);
-    },
-    prev: function prev() {
-      var page = this.currentPage;
-      if (page > 0) {
-        page--;
-      }
-      this.setPage(page);
-    },
-    setPage: function setPage(page) {
-      var url = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-      var animated = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-
-      if (!this.isTabView) {
-        this.currentPage = page;
-        this._animateTransformX(page, animated);
-        this.$emit('wxcTabBarCurrentTabSelected', { page: page });
-        this.jumpOut(url);
-        return;
-      }
-      var previousPage = this.currentPage;
-      var currentTabEl = this.$refs['wxc-tab-title-' + page][0];
-      var width = this.tabStyles.width;
-
-      var appearNum = parseInt(750 / width);
-      var tabsNum = this.tabTitles.length;
-      var offset = page > appearNum ? -(750 - width) / 2 : -width * 2;
-
-      if (appearNum < tabsNum) {
-        (previousPage > appearNum || page > 1) && dom.scrollToElement(currentTabEl, {
-          offset: offset, animated: animated
-        });
-
-        page <= 1 && previousPage > page && dom.scrollToElement(currentTabEl, {
-          offset: -width * page,
-          animated: animated
-        });
-      }
-
-      this.currentPage = page;
-      this._animateTransformX(page, animated);
-      this.$emit('wxcTabBarCurrentTabSelected', { page: page });
-    },
-    jumpOut: function jumpOut(url) {
-      url && _utils2.default.goToH5Page(url);
-    },
-    _animateTransformX: function _animateTransformX(page, animated) {
-      var duration = this.duration,
-          timingFunction = this.timingFunction;
-
-      var computedDur = animated ? duration : 0.00001;
-      var containerEl = this.$refs['tab-container'];
-      var dist = page * 750;
-      animation.transition(containerEl, {
-        styles: {
-          transform: 'translateX(' + -dist + 'px)'
-        },
-        duration: computedDur,
-        timingFunction: timingFunction,
-        delay: 0
-      }, function () {});
-    }
-  }
-};
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: ["wxc-tab-page"],
-    style: {
-      backgroundColor: _vm.wrapBgColor
-    }
-  }, [_c('div', {
-    ref: "tab-page-wrap",
-    staticClass: ["tab-page-wrap"]
-  }, [_c('div', {
-    ref: "tab-container",
-    staticClass: ["tab-container"]
-  }, [_vm._t("default")], 2)]), _c('div', {
-    staticClass: ["tab-title-list"],
-    style: {
-      backgroundColor: _vm.tabStyles.bgColor,
-      height: (_vm.tabStyles.height + (_vm.isIPhoneX ? 78 : 0)) + 'px',
-      paddingBottom: _vm.isIPhoneX ? '78px' : '0'
-    }
-  }, _vm._l((_vm.tabTitles), function(v, index) {
-    return _c('div', {
-      key: index,
-      ref: 'wxc-tab-title-' + index,
-      refInFor: true,
-      staticClass: ["title-item"],
-      style: {
-        width: _vm.tabStyles.width + 'px',
-        height: _vm.tabStyles.height + 'px',
-        backgroundColor: _vm.currentPage == index ? _vm.tabStyles.activeBgColor : _vm.tabStyles.bgColor
-      },
-      attrs: {
-        "accessible": true,
-        "ariaLabel": ("" + (v.title?v.title:'标签'+index))
-      },
-      on: {
-        "click": function($event) {
-          _vm.setPage(index, v.url)
-        }
-      }
-    }, [(_vm.titleType === 'icon' && !_vm.titleUseSlot) ? _c('image', {
-      style: {
-        width: _vm.tabStyles.iconWidth + 'px',
-        height: _vm.tabStyles.iconHeight + 'px'
-      },
-      attrs: {
-        "src": _vm.currentPage == index ? v.activeIcon : v.icon
-      }
-    }) : _vm._e(), (_vm.titleType === 'iconFont' && v.codePoint && !_vm.titleUseSlot) ? _c('text', {
-      style: {
-        fontFamily: 'wxcIconFont',
-        fontSize: _vm.tabStyles.iconFontSize + 'px',
-        marginBottom: _vm.tabStyles.iconFontMarginBottom ? (_vm.tabStyles.iconFontMarginBottom + 'px') : '8px',
-        color: _vm.currentPage == index ? _vm.tabStyles.activeIconFontColor : _vm.tabStyles.iconFontColor
-      }
-    }, [_vm._v(_vm._s(v.codePoint))]) : _vm._e(), (!_vm.titleUseSlot) ? _c('text', {
-      staticClass: ["tab-text"],
-      style: {
-        fontSize: _vm.tabStyles.fontSize + 'px',
-        fontWeight: (_vm.currentPage == index && _vm.tabStyles.isActiveTitleBold) ? 'bold' : 'normal',
-        color: _vm.currentPage == index ? _vm.tabStyles.activeTitleColor : _vm.tabStyles.titleColor,
-        paddingLeft: _vm.tabStyles.textPaddingLeft + 'px',
-        paddingRight: _vm.tabStyles.textPaddingRight + 'px'
-      }
-    }, [_vm._v(_vm._s(v.title))]) : _vm._e(), (v.badge && !_vm.titleUseSlot) ? _c('div', {
-      staticClass: ["desc-tag"]
-    }, [_c('text', {
-      staticClass: ["desc-text"]
-    }, [_vm._v(_vm._s(v.badge))])]) : _vm._e(), (v.dot && !v.badge && !_vm.titleUseSlot) ? _c('div', {
-      staticClass: ["dot"]
-    }) : _vm._e(), (_vm.titleUseSlot) ? _vm._t(("tab-title-" + index)) : _vm._e()], 2)
-  }))])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
 
 /***/ }),
 /* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _index = __webpack_require__(31);
-
-Object.defineProperty(exports, 'default', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_index).default;
-  }
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
 var __vue_exports__, __vue_options__
 var __vue_styles__ = []
 
 /* styles */
-__vue_styles__.push(__webpack_require__(32)
+__vue_styles__.push(__webpack_require__(31)
 )
 
 /* script */
-__vue_exports__ = __webpack_require__(33)
+__vue_exports__ = __webpack_require__(32)
 
 /* template */
-var __vue_template__ = __webpack_require__(34)
+var __vue_template__ = __webpack_require__(33)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -2625,10 +2317,10 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "F:\\learning\\weex\\demo\\node_modules\\weex-ui\\packages\\wxc-minibar\\index.vue"
+__vue_options__.__file = "F:\\learning\\weex\\firstDemo\\node_modules\\weex-ui\\packages\\wxc-minibar\\index.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-286553d4"
+__vue_options__._scopeId = "data-v-e026d130"
 __vue_options__.style = __vue_options__.style || {}
 __vue_styles__.forEach(function (module) {
   for (var name in module) {
@@ -2643,7 +2335,7 @@ module.exports = __vue_exports__
 
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -2685,7 +2377,7 @@ module.exports = {
 }
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2827,7 +2519,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -2881,211 +2573,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 module.exports.render._withStripped = true
 
 /***/ }),
-/* 35 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var WEEXUI_ICON = exports.WEEXUI_ICON = 'https://gw.alicdn.com/tfs/TB1JpgJRFXXXXc7XpXXXXXXXXXX-800-800.png';
-var RETURN_ICON = exports.RETURN_ICON = 'https://gw.alicdn.com/tfs/TB1cAYsbv2H8KJjy0FcXXaDlFXa-30-53.png';
-var SCAN_ICON = exports.SCAN_ICON = 'https://gw.alicdn.com/tfs/TB1Vm3abuuSBuNjy1XcXXcYjFXa-64-64.png';
-var QRCODE_ICON = exports.QRCODE_ICON = 'https://gw.alicdn.com/tfs/TB1U93abuuSBuNjy1XcXXcYjFXa-64-64.png';
-var QUESTION_ICON = exports.QUESTION_ICON = 'https://gw.alicdn.com/tfs/TB1MWDTbwmTBuNjy1XbXXaMrVXa-64-64.png';
-var TABLES = exports.TABLES = {
-  icon: [{
-    title: '首页',
-    icon: 'https://gw.alicdn.com/tfs/TB1MWXdSpXXXXcmXXXXXXXXXXXX-72-72.png',
-    activeIcon: 'https://gw.alicdn.com/tfs/TB1kCk2SXXXXXXFXFXXXXXXXXXX-72-72.png'
-  }, {
-    title: '特别推荐',
-    icon: 'https://gw.alicdn.com/tfs/TB1ARoKSXXXXXc9XVXXXXXXXXXX-72-72.png',
-    activeIcon: 'https://gw.alicdn.com/tfs/TB19Z72SXXXXXamXFXXXXXXXXXX-72-72.png'
-  }, {
-    title: '消息中心',
-    icon: 'https://gw.alicdn.com/tfs/TB1VKMISXXXXXbyaXXXXXXXXXXX-72-72.png',
-    activeIcon: 'https://gw.alicdn.com/tfs/TB1aTgZSXXXXXazXFXXXXXXXXXX-72-72.png',
-    badge: 5
-  }, {
-    title: '我的主页',
-    icon: 'https://gw.alicdn.com/tfs/TB1Do3tSXXXXXXMaFXXXXXXXXXX-72-72.png',
-    activeIcon: 'https://gw.alicdn.com/tfs/TB1LiNhSpXXXXaWXXXXXXXXXXXX-72-72.png',
-    dot: true
-  }],
-  tabStyles: {
-    bgColor: '#FFFFFF',
-    titleColor: '#333333',
-    activeTitleColor: '#FF5E00',
-    activeBgColor: '#FFFFFF',
-    isActiveTitleBold: true,
-    iconWidth: 70,
-    iconHeight: 70,
-    width: 160,
-    height: 120,
-    fontSize: 24,
-    textPaddingLeft: 10,
-    textPaddingRight: 10,
-    borderWidth: 1,
-    borderColor: '#f40',
-    borderTopStyle: 'solid'
-  }
-};
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __vue_exports__, __vue_options__
-var __vue_styles__ = []
-
-/* styles */
-__vue_styles__.push(__webpack_require__(3)
-)
-
-/* script */
-__vue_exports__ = __webpack_require__(4)
-
-/* template */
-var __vue_template__ = __webpack_require__(5)
-__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-if (
-  typeof __vue_exports__.default === "object" ||
-  typeof __vue_exports__.default === "function"
-) {
-if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
-__vue_options__ = __vue_exports__ = __vue_exports__.default
-}
-if (typeof __vue_options__ === "function") {
-  __vue_options__ = __vue_options__.options
-}
-__vue_options__.__file = "F:\\learning\\weex\\demo\\src\\src\\components\\mainNav.vue"
-__vue_options__.render = __vue_template__.render
-__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-c48c9c14"
-__vue_options__.style = __vue_options__.style || {}
-__vue_styles__.forEach(function (module) {
-  for (var name in module) {
-    __vue_options__.style[name] = module[name]
-  }
-})
-if (typeof __register_static_styles__ === "function") {
-  __register_static_styles__(__vue_options__._scopeId, __vue_styles__)
-}
-
-module.exports = __vue_exports__
-
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __vue_exports__, __vue_options__
-var __vue_styles__ = []
-
-/* styles */
-__vue_styles__.push(__webpack_require__(0)
-)
-
-/* script */
-__vue_exports__ = __webpack_require__(1)
-
-/* template */
-var __vue_template__ = __webpack_require__(2)
-__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-if (
-  typeof __vue_exports__.default === "object" ||
-  typeof __vue_exports__.default === "function"
-) {
-if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
-__vue_options__ = __vue_exports__ = __vue_exports__.default
-}
-if (typeof __vue_options__ === "function") {
-  __vue_options__ = __vue_options__.options
-}
-__vue_options__.__file = "F:\\learning\\weex\\demo\\src\\src\\components\\advertBox.vue"
-__vue_options__.render = __vue_template__.render
-__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-3786e723"
-__vue_options__.style = __vue_options__.style || {}
-__vue_styles__.forEach(function (module) {
-  for (var name in module) {
-    __vue_options__.style[name] = module[name]
-  }
-})
-if (typeof __register_static_styles__ === "function") {
-  __register_static_styles__(__vue_options__._scopeId, __vue_styles__)
-}
-
-module.exports = __vue_exports__
-
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __vue_exports__, __vue_options__
-var __vue_styles__ = []
-
-/* styles */
-__vue_styles__.push(__webpack_require__(6)
-)
-
-/* script */
-__vue_exports__ = __webpack_require__(7)
-
-/* template */
-var __vue_template__ = __webpack_require__(8)
-__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-if (
-  typeof __vue_exports__.default === "object" ||
-  typeof __vue_exports__.default === "function"
-) {
-if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
-__vue_options__ = __vue_exports__ = __vue_exports__.default
-}
-if (typeof __vue_options__ === "function") {
-  __vue_options__ = __vue_options__.options
-}
-__vue_options__.__file = "F:\\learning\\weex\\demo\\src\\src\\components\\motherLearning.vue"
-__vue_options__.render = __vue_template__.render
-__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-3cda5236"
-__vue_options__.style = __vue_options__.style || {}
-__vue_styles__.forEach(function (module) {
-  for (var name in module) {
-    __vue_options__.style[name] = module[name]
-  }
-})
-if (typeof __register_static_styles__ === "function") {
-  __register_static_styles__(__vue_options__._scopeId, __vue_styles__)
-}
-
-module.exports = __vue_exports__
-
-
-/***/ }),
-/* 39 */
+/* 34 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: ["wrapper"]
-  }, [_c('wxc-tab-bar', {
-    attrs: {
-      "tabTitles": _vm.TABLES.icon,
-      "tabStyles": _vm.TABLES.tabStyles,
-      "titleType": "icon"
-    },
-    on: {
-      "wxcTabBarCurrentTabSelected": _vm.wxcTabBarCurrentTabSelected
-    }
-  }, [_c('scroller', {
-    staticClass: ["item-container"],
-    style: _vm.contentStyle
-  }, [_c('wxc-minibar', {
+  return _c('div', [_c('wxc-minibar', {
     attrs: {
       "backgroundColor": "#FFF3CD"
     },
@@ -3128,20 +2620,47 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "wxcPopoverButtonClicked": _vm.popoverButtonClicked
     }
-  }), _c('advert-box'), _c('div', {
-    staticClass: ["fw"]
-  }, [_c('main-nav')], 1), _c('mother-learning')], 1), _c('div', {
-    staticClass: ["item-container"],
-    style: _vm.contentStyle
-  }, [_c('text', [_vm._v("特别推荐")]), _c('text', [_vm._v("特别推荐")]), _c('text', [_vm._v("特别推荐")]), _c('text', [_vm._v("特别推荐")]), _c('text', [_vm._v("特别推荐")]), _c('text', [_vm._v("特别推荐")])]), _c('div', {
-    staticClass: ["item-container"],
-    style: _vm.contentStyle
-  }, [_c('text', [_vm._v("消息中心")]), _c('text', [_vm._v("消息中心")]), _c('text', [_vm._v("消息中心")]), _c('text', [_vm._v("消息中心")]), _c('text', [_vm._v("消息中心")]), _c('text', [_vm._v("消息中心")])]), _c('div', {
-    staticClass: ["item-container"],
-    style: _vm.contentStyle
-  }, [_c('text', [_vm._v("我的主页")]), _c('text', [_vm._v("我的主页")]), _c('text', [_vm._v("我的主页")]), _c('text', [_vm._v("我的主页")]), _c('text', [_vm._v("我的主页")]), _c('text', [_vm._v("我的主页")]), _c('text', [_vm._v("我的主页")]), _c('text', [_vm._v("我的主页")]), _c('text', [_vm._v("我的主页")])])])], 1)
+  }), _c('scroller', {
+    staticClass: ["home_scroll"],
+    style: _vm.contentStyleInner
+  }, [_c('advert-box', {
+    ref: "banner"
+  }), _c('main-nav'), _c('mother-learning')], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
+
+/***/ }),
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _home = __webpack_require__(21);
+
+var _home2 = _interopRequireDefault(_home);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_home2.default.el = '#root';
+new Vue(_home2.default);
 
 /***/ })
 /******/ ]);

@@ -62,26 +62,26 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 40);
+/******/ 	return __webpack_require__(__webpack_require__.s = 54);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 4:
+/***/ 17:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = []
 
 /* styles */
-__vue_styles__.push(__webpack_require__(5)
+__vue_styles__.push(__webpack_require__(18)
 )
 
 /* script */
-__vue_exports__ = __webpack_require__(6)
+__vue_exports__ = __webpack_require__(19)
 
 /* template */
-var __vue_template__ = __webpack_require__(7)
+var __vue_template__ = __webpack_require__(20)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -93,10 +93,10 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "F:\\learning\\weex\\firstDemo\\src\\components\\mainNav.vue"
+__vue_options__.__file = "F:\\learning\\weex\\firstDemo\\src\\pages\\productList.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-6c81682c"
+__vue_options__._scopeId = "data-v-2faa9aff"
 __vue_options__.style = __vue_options__.style || {}
 __vue_styles__.forEach(function (module) {
   for (var name in module) {
@@ -112,77 +112,72 @@ module.exports = __vue_exports__
 
 /***/ }),
 
-/***/ 40:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _mainNav = __webpack_require__(4);
-
-var _mainNav2 = _interopRequireDefault(_mainNav);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_mainNav2.default.el = '#root';
-new Vue(_mainNav2.default);
-
-/***/ }),
-
-/***/ 5:
+/***/ 18:
 /***/ (function(module, exports) {
 
 module.exports = {
-  "container": {
+  "banner": {
     "width": "750",
-    "backgroundColor": "#ffffff"
+    "paddingTop": "25",
+    "paddingRight": "25",
+    "paddingBottom": "25",
+    "paddingLeft": "25",
+    "fontSize": "60",
+    "textAlign": "center",
+    "fontWeight": "bold",
+    "color": "#41B883",
+    "backgroundColor": "rgb(162,217,192)"
   },
-  "imageList": {
-    "flexDirection": "row",
-    "height": "160",
-    "marginTop": "20"
-  },
-  "imageIcon": {
-    "flex": 1,
+  "panel": {
+    "width": "600",
+    "height": "300",
+    "marginLeft": "75",
+    "marginTop": "35",
+    "marginBottom": "35",
+    "flexDirection": "column",
     "justifyContent": "center",
-    "alignItems": "center"
-  },
-  "image": {
-    "width": "90",
-    "height": "90"
-  },
-  "textOut": {
-    "marginTop": "20"
+    "borderWidth": "2",
+    "borderStyle": "solid",
+    "borderColor": "rgb(162,217,192)",
+    "backgroundColor": "rgba(162,217,192,0.2)"
   },
   "text": {
-    "fontSize": "26"
+    "fontSize": "50",
+    "textAlign": "center",
+    "color": "#41B883"
+  },
+  "loading": {
+    "width": 750,
+    "display": "flex",
+    "MsFlexAlign": "center",
+    "WebkitAlignItems": "center",
+    "WebkitBoxAlign": "center",
+    "alignItems": "center"
+  },
+  "indicator-text": {
+    "color": "#888888",
+    "fontSize": "42",
+    "textAlign": "center"
+  },
+  "indicator": {
+    "marginTop": "16",
+    "height": "40",
+    "width": "40",
+    "color": "#0000FF"
   }
 }
 
 /***/ }),
 
-/***/ 6:
+/***/ 19:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 //
 //
 //
@@ -202,92 +197,102 @@ module.exports = {
 //
 
 var modal = weex.requireModule('modal');
-var navigator = weex.requireModule('navigator');
-module.exports = {
+var LOADMORE_COUNT = 4;
+exports.default = {
   data: function data() {
-    var imageHead = 'https://img2.mama100.com/o2oHomePage/201712/2c918082604496630160530c57';
-    var textList = ['积分商城', '跨境购', '天天赚', '超级礼遇', '百分妈妈课堂', '孕育工具', '问专家', '在线咨询'];
-    var imageList = [];
-    var imageLast = ['440057', '4b0058', '4d0059', '51005a', '61005b', '64005c', '73005d', '76005e'];
-    for (var i = 0; i < textList.length; i++) {
-      imageList.push({ index: i, url: imageHead + imageLast[i] + '.png', imageText: textList[i] });
-    }
     return {
-      imageList: imageList
+      loadinging: false,
+      lists: [1, 2, 3, 4, 5]
     };
   },
+
   methods: {
-    nav_click: function nav_click(item) {
-      console.log(item.index);
-      navigator.push({
-        url: 'https://www.baidu.com/',
-        animated: "true"
-      }, function (event) {
-        modal.toast({ message: 'callback: ' });
-      });
+    fetch: function fetch(event) {
+      var _this = this;
+
+      setTimeout(function () {
+        var length = _this.lists.length;
+        for (var i = length; i < length + LOADMORE_COUNT; ++i) {
+          _this.lists.push(i + 1);
+          _this.loadinging = true;
+          setTimeout(function () {
+            _this.loadinging = false;
+          }, 2000);
+        }
+      }, 800);
+    },
+    onloading: function onloading() {
+      console.log("加载中~");
     }
   }
 };
 
 /***/ }),
 
-/***/ 7:
+/***/ 20:
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: ["container"]
-  }, [_c('div', {
-    staticClass: ["imageList"]
-  }, _vm._l((_vm.imageList), function(item) {
-    return (item.index <= 3) ? _c('div', {
-      key: item.index,
-      staticClass: ["imageIcon"],
-      on: {
-        "click": function($event) {
-          _vm.nav_click(item)
-        }
-      }
-    }, [_c('image', {
-      staticClass: ["image"],
+  return _c('list', {
+    attrs: {
+      "loadmoreoffset": "5"
+    },
+    on: {
+      "loadmore": _vm.fetch
+    }
+  }, [_vm._m(0), _vm._l((_vm.lists), function(index) {
+    return _c('cell', {
+      key: index,
+      appendAsTree: true,
       attrs: {
-        "src": item.url
+        "append": "tree"
       }
-    }), _c('div', {
-      staticClass: ["textOut"]
+    }, [_c('div', {
+      staticClass: ["panel"]
     }, [_c('text', {
-      staticClass: ["text"],
-      attrs: {
-        "lines": "1"
-      }
-    }, [_vm._v(_vm._s(item.imageText))])])]) : _vm._e()
-  })), _c('div', {
-    staticClass: ["imageList"]
-  }, _vm._l((_vm.imageList), function(item) {
-    return (item.index > 3) ? _c('div', {
-      key: item.index,
-      staticClass: ["imageIcon"],
-      on: {
-        "click": function($event) {
-          _vm.nav_click(item)
-        }
-      }
-    }, [_c('image', {
-      staticClass: ["image"],
-      attrs: {
-        "src": item.url
-      }
-    }), _c('div', {
-      staticClass: ["textOut"]
-    }, [_c('text', {
-      staticClass: ["text"],
-      attrs: {
-        "lines": "1"
-      }
-    }, [_vm._v(_vm._s(item.imageText))])])]) : _vm._e()
-  }))])
-},staticRenderFns: []}
+      staticClass: ["text"]
+    }, [_vm._v(_vm._s(index))])])])
+  }), _c('loading', {
+    staticClass: ["loading"],
+    attrs: {
+      "display": _vm.loadinging ? 'show' : 'hide'
+    },
+    on: {
+      "loading": _vm.onloading
+    }
+  }, [_c('text', {
+    staticClass: ["indicator-text"]
+  }, [_vm._v("Loading ...")]), _c('loading-indicator', {
+    staticClass: ["indicator"]
+  })])], 2)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('header', {
+    appendAsTree: true,
+    attrs: {
+      "append": "tree"
+    }
+  }, [_c('text', {
+    staticClass: ["banner"]
+  }, [_vm._v("HEADER")])])
+}]}
 module.exports.render._withStripped = true
+
+/***/ }),
+
+/***/ 54:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _productList = __webpack_require__(17);
+
+var _productList2 = _interopRequireDefault(_productList);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_productList2.default.el = '#root';
+new Vue(_productList2.default);
 
 /***/ })
 

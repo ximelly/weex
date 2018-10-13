@@ -62,100 +62,18 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 15);
+/******/ 	return __webpack_require__(__webpack_require__.s = 41);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */,
-/* 1 */,
-/* 2 */,
-/* 3 */,
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
+/******/ ({
 
-var __vue_exports__, __vue_options__
-var __vue_styles__ = []
-
-/* styles */
-__vue_styles__.push(__webpack_require__(9)
-)
-
-/* script */
-__vue_exports__ = __webpack_require__(10)
-
-/* template */
-var __vue_template__ = __webpack_require__(11)
-__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-if (
-  typeof __vue_exports__.default === "object" ||
-  typeof __vue_exports__.default === "function"
-) {
-if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
-__vue_options__ = __vue_exports__ = __vue_exports__.default
-}
-if (typeof __vue_options__ === "function") {
-  __vue_options__ = __vue_options__.options
-}
-__vue_options__.__file = "/Users/duqian/Downloads/ximelly/weex-ximelly-all/src/components/motherLearning.vue"
-__vue_options__.render = __vue_template__.render
-__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-67108891"
-__vue_options__.style = __vue_options__.style || {}
-__vue_styles__.forEach(function (module) {
-  for (var name in module) {
-    __vue_options__.style[name] = module[name]
-  }
-})
-if (typeof __register_static_styles__ === "function") {
-  __register_static_styles__(__vue_options__._scopeId, __vue_styles__)
-}
-
-module.exports = __vue_exports__
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-module.exports = {
-  "questionList": {
-    "paddingTop": 0,
-    "paddingRight": "30",
-    "paddingBottom": 0,
-    "paddingLeft": "30",
-    "backgroundColor": "#ffffff"
-  },
-  "modelTitle": {
-    "color": "#636666",
-    "textAlign": "center",
-    "height": "100",
-    "lineHeight": "100",
-    "marginTop": "20"
-  },
-  "questionTitle": {
-    "lines": 1,
-    "textOverflow": "ellipsis"
-  },
-  "questionContent": {
-    "color": "#999999",
-    "lineHeight": "46",
-    "lines": 2,
-    "textOverflow": "ellipsis",
-    "paddingTop": "20"
-  }
-}
-
-/***/ }),
-/* 10 */
+/***/ 10:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
+//
 //
 //
 //
@@ -214,7 +132,8 @@ module.exports = {
 };
 
 /***/ }),
-/* 11 */
+
+/***/ 11:
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -237,10 +156,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 module.exports.render._withStripped = true
 
 /***/ }),
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */
+
+/***/ 41:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -255,5 +172,85 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _motherLearning2.default.el = '#root';
 new Vue(_motherLearning2.default);
 
+/***/ }),
+
+/***/ 8:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __vue_exports__, __vue_options__
+var __vue_styles__ = []
+
+/* styles */
+__vue_styles__.push(__webpack_require__(9)
+)
+
+/* script */
+__vue_exports__ = __webpack_require__(10)
+
+/* template */
+var __vue_template__ = __webpack_require__(11)
+__vue_options__ = __vue_exports__ = __vue_exports__ || {}
+if (
+  typeof __vue_exports__.default === "object" ||
+  typeof __vue_exports__.default === "function"
+) {
+if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
+__vue_options__ = __vue_exports__ = __vue_exports__.default
+}
+if (typeof __vue_options__ === "function") {
+  __vue_options__ = __vue_options__.options
+}
+__vue_options__.__file = "F:\\learning\\weex\\firstDemo\\src\\components\\motherLearning.vue"
+__vue_options__.render = __vue_template__.render
+__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+__vue_options__._scopeId = "data-v-a7443b1e"
+__vue_options__.style = __vue_options__.style || {}
+__vue_styles__.forEach(function (module) {
+  for (var name in module) {
+    __vue_options__.style[name] = module[name]
+  }
+})
+if (typeof __register_static_styles__ === "function") {
+  __register_static_styles__(__vue_options__._scopeId, __vue_styles__)
+}
+
+module.exports = __vue_exports__
+
+
+/***/ }),
+
+/***/ 9:
+/***/ (function(module, exports) {
+
+module.exports = {
+  "questionList": {
+    "width": "750",
+    "paddingTop": 0,
+    "paddingRight": "30",
+    "paddingBottom": 0,
+    "paddingLeft": "30",
+    "backgroundColor": "#ffffff"
+  },
+  "modelTitle": {
+    "color": "#636666",
+    "textAlign": "center",
+    "height": "100",
+    "lineHeight": "100",
+    "marginTop": "20"
+  },
+  "questionTitle": {
+    "lines": 1,
+    "textOverflow": "ellipsis"
+  },
+  "questionContent": {
+    "color": "#999999",
+    "lineHeight": "46",
+    "lines": 2,
+    "textOverflow": "ellipsis",
+    "paddingTop": "20"
+  }
+}
+
 /***/ })
-/******/ ]);
+
+/******/ });

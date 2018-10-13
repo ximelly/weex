@@ -39,12 +39,12 @@ module.exports = {
         btns: [
           {
             icon: QRCODE_ICON,
-            text: 'My Qrcode',
+            text: '获取网络信息',
             key: 'key-qrcode'
           },
           {
             icon: QUESTION_ICON,
-            text: 'Help',
+            text: '获取设备信息',
             key: 'key-help'
           }
         ],

@@ -123,7 +123,7 @@ public class WXPageActivity extends AbsWeexActivity implements
         }
         LogUtil.d("weex load url=" + url);
         // TODO: 2018/9/2 修改为本地js地址，或者公司服务器上的js地址
-        url = "http://10.50.101.126:8081/dist/index.js";
+        //url = "http://10.50.101.126:8081/dist/index.js";
         //url = "http://swissewx.mama100.cn/swisse-wmall/weex/ios/index.js";
         loadUrl(url);
     }
