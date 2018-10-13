@@ -4,7 +4,7 @@
 ">
     </image>
     
-    <text class="button" value="SaveImg" type="primary" @click="save">保存</text>
+    <text class="button" value="SaveImg" type="primary" @click="save" v-if="plat!=='Web'" >保存</text>
   </div>
 </template>
 
@@ -14,13 +14,13 @@
     width: 200px;
     height:80px;
     line-height:80px;
-    margin:30px auto;
+    margin:30px 275px;
     color: #41B883;
     text-align: center;
     background-color: #f40;
   }
   .img {
-    margin: 50px auto 30px;
+    margin: 50px 75px 30px;
   }
 </style>
 
@@ -28,14 +28,23 @@
   var modal = weex.requireModule('modal')
   module.exports = {
     data: function () {
-      return {}
+      return {
+        plat:weex.config.env.platform
+      }
     },
     methods: {
       save: function () {
-        if(weex.config.env.platform!=="Web"){
+        if(this.plat!=="Web"){
           this.$refs['img'].save(function(result) {
-            modal.toast({ message: "Img sava " + result.success + ", " + result.errorDesc})
+            if(result.success){
+              modal.toast({ message: "保存成功 "})
+            }else{
+              modal.toast({ message:result.errorDesc})
+            }
+            
           });
+        }else{
+          console.log("haha:"+this.plat);
         }
       },
     }

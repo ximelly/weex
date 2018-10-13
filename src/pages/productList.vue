@@ -37,6 +37,9 @@ const LOADMORE_COUNT = 4;
             }, 2000)
           }
         }, 800)
+      },
+      onloading(){
+        console.log("加载中~");
       }
     }
   };
