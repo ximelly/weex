@@ -28,7 +28,7 @@ import advertBox from '../components/advertBox.vue'
 import motherLearning from '../components/motherLearning.vue'
 const modal = weex.requireModule('modal')
 const modalEvent = weex.requireModule('event')
-//duqian新增原生模块引用
+//原生模块引用
 const phoneModule = weex.requireModule('phoneModule')
 const logModule = weex.requireModule("logModule")
 module.exports = {
